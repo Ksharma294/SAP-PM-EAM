@@ -4,21 +4,28 @@ In this project, I am focusing on automating the generation of Measurement Docum
 
 Enter the required data into the Excel file and press the "Execute" button to start VBA Script.
 
-Column 1: Measuring Point
+Column 1: Serial Number (This data is not fed into SAP. It is for your reference and to know 
+          how many readings you have entered)
 
-Column 2: Date
+Column 2: Measuring Point
 
-Column 3: Time
+Column 3: Date
 
-Column 4: Equipment Reading
+Column 4: Time
 
-Column 5: Enter Text
+Column 5: Read By
 
-Column 6: Process Status (Leave it empty if no Process status is present)
+Column 6: Documented After Task
+
+Column 7: Enter Equipment Reading
+
+Column 8: Text or Comments
+
+Column 9:Process Status (Leave it empty if no Process status is present)
 
 Output:
 
-Column 6: Measurement Document Number (from SAP)
+Column 10: Measurement Document Number (from SAP)
 
 One of the key advantages of this code is its ability to handle multiple measurement points simultaneously. You input the data for as many measurement points as needed (The limit is set to 10000000 Measurement Points), press the "Execute" button in Excel, and you’re free to take a break. When you return, all the entries will be processed for the respective measurement points. For your convenience, the system will also provide the measurement document numbers generated for each point in the SAP system.
 
