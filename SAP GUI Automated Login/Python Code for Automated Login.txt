@@ -15,7 +15,7 @@ def SAP_ENTER():
             return
 
         # Open connection to the SAP system
-        connection = application.OpenConnection("SID Name ")
+        connection = application.OpenConnection("SID Name [Group/Server Details]")
         if connection is None:
             print("Failed to connect to the system.")
             return
