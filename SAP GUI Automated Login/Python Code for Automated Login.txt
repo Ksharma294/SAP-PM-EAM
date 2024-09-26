@@ -1,0 +1,46 @@
+import win32com.client
+
+def SAP_ENTER():
+    try:
+        # Connect to SAP GUI
+        sap_gui = win32com.client.GetObject("SAPGUI")
+        if sap_gui is None:
+            print("SAP GUI not found.")
+            return
+
+        # Get the scripting engine
+        application = sap_gui.GetScriptingEngine
+        if application is None:
+            print("Failed to get the SAP scripting engine.")
+            return
+
+        # Open connection to the SAP system
+        connection = application.OpenConnection("SID Name ")
+        if connection is None:
+            print("Failed to connect to the system.")
+            return
+
+        # Get the first session of the connection
+        session = connection.Children(0)
+
+        # Set the username and password
+        session.FindById("wnd[0]/usr/txtRSYST-BNAME").Text = "Username"
+        session.FindById("wnd[0]/usr/pwdRSYST-BCODE").Text = "Password"
+
+        # Press the Enter key
+        session.FindById("wnd[0]").SendVKey(0)
+
+        print("Login successful.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    finally:
+        # Release the COM objects
+        session = None
+        connection = None
+        application = None
+        sap_gui = None
+
+if __name__ == "__main__":
+    SAP_ENTER()
