@@ -1,0 +1,74 @@
+Public Sub SAPTABLEDATA()
+ ' Declare necessary objects
+    Dim SapGuiAuto As Object
+    Dim application As Object
+    Dim connection As Object
+    Dim session As Object
+    Dim ws As Worksheet
+    Dim Name As String
+    
+    
+ Set ws = ThisWorkbook.ActiveSheet
+ 
+
+    ' Get the SAP GUI Scripting Engine
+    Set SapGuiAuto = GetObject("SAPGUI")
+    Set application = SapGuiAuto.GetScriptingEngine
+
+    ' Access the first connection and session
+    Set connection = application.Children(0)
+    Set session = connection.Children(0)
+
+    ' Maximize the main SAP window
+    session.FindById("wnd[0]").Maximize
+
+    ' Enter the transaction code SE16N into the command field
+    session.FindById("wnd[0]/tbar[0]/okcd").Text = "/nse16n"
+
+    ' Press the Enter key to execute the transaction code
+    session.FindById("wnd[0]").SendVKey 0
+
+    ' Enter the table name 
+    session.FindById("wnd[0]/usr/ctxtGD-TAB").Text = ws.Cells(1, 2)
+    
+    'Enter the Number of hits or Values to be achieved from the Table
+    session.FindById("wnd[0]/usr/txtGD-MAX_LINES").Text = ws.Cells(2, 2)
+
+    ' Set the cursor position in the table name field (optional)
+    session.FindById("wnd[0]/usr/ctxtGD-TAB").caretPosition = 4
+
+    ' Press the Execute button to access the table
+    session.FindById("wnd[0]/tbar[1]/btn[8]").Press
+
+' Create New Sheet
+Set ws = ThisWorkbook.Sheets.Add(After:=ThisWorkbook.Sheets(ThisWorkbook.Sheets.Count))
+
+' Rename Newly created Sheet
+ActiveSheet.Name = ThisWorkbook.Sheets("Main Sheet").Cells(1, 2).Value
+
+' Code to Copy Table Data to Active Sheet
+
+Set myGrid = session.FindById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") # Replace the value inside the bracket from you SAP Server
+allRows = myGrid.RowCount - 1 'number of SAP rows
+allCols = myGrid.ColumnCount - 1 'number of SAP Columns
+Dim columns As Object
+Set columns = myGrid.ColumnOrder 'SAP column names in order in SAP window
+
+Dim oColumns
+Set oColumns = myGrid.ColumnOrder
+
+Dim iCols As Integer
+iCols = myGrid.ColumnCount - 1
+
+For i = 0 To iCols - 1 ' Loop through all the columns
+    ' Get the value of the first visible row for the current column
+   ws.Cells(1, i + 1).Value = oColumns(i)
+Next i
+ 
+ For j = 0 To allRows
+ myGrid.FirstVisibleRow = j
+  For i = 0 To allCols
+   ws.Cells(j + 2, i + 1).Value = myGrid.GetCellValue(j, columns(i)) 'starts in cell "A1"
+  Next i
+ Next j
+ 
