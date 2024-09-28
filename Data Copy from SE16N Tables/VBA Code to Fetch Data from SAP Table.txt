@@ -71,4 +71,5 @@ Next i
    ws.Cells(j + 2, i + 1).Value = myGrid.GetCellValue(j, columns(i)) 'starts in cell "A1"
   Next i
  Next j
- 
+ End Sub
+
