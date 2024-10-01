@@ -1,0 +1,40 @@
+Public Sub SAPENTER()
+    Dim oSapGui As Object
+        
+    ' Extras -> References ... -> Browse ...
+    ' C:\Program Files\SAP\FrontEnd\SAPgui\sapfewse.ocx
+    ' Enable: SAP GUI Scripting API
+    Dim oApp As SAPFEWSELib.GuiApplication
+    Dim oConn As SAPFEWSELib.GuiConnection
+    Dim oSession As SAPFEWSELib.GuiSession
+       
+    ' Reference to SAPGUI
+    Set oSapGui = GetObject("SAPGUI")
+    If IsObject(oSapGui) Then
+        ' Reference to ScriptingEngine
+        Set oApp = oSapGui.GetScriptingEngine
+        If IsObject(oApp) Then
+ 
+            ' Connect to the system, where <SYSTEM> is the full (!) system name from SAP Logon Pad -> Connections
+            Set oConn = oApp.OpenConnection("Enter you SID Name [Enter your Application Server Details]")
+ 
+            If IsObject(oConn) Then
+                ' 1st session of the connection
+                Set oSession = oConn.Children(0)
+   
+                ' Set the username and password
+                oSession.FindById("wnd[0]/usr/txtRSYST-BNAME").Text = "UserName"
+                oSession.FindById("wnd[0]/usr/pwdRSYST-BCODE").Text = "Password"
+                ' Press Enter key
+                oSession.FindById("wnd[0]").SendVKey 0
+            End If
+        End If
+    End If
+     
+    ' Clean up the references
+    Set oSession = Nothing
+    Set oConn = Nothing
+    Set oApp = Nothing
+    Set oSapGui = Nothing
+End Sub
+
