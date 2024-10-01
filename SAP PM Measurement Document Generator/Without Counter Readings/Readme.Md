@@ -46,6 +46,6 @@ Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell")
 Replace the code after the = sign with the one from your SAP script, as mentioned in line 179.  
 
 
-
+If a certain field is not mandatory in your organization, as indicated in the Excel file, you can simply delete that section from the VBA code under the Sub MeasurementDocumentCreation. However, do not modify the Excel file—just leave the field as it is.
 
 
