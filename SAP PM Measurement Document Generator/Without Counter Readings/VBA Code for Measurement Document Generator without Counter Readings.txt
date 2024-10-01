@@ -176,11 +176,11 @@ session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,4]"
 session.findById("wnd[0]").SendVKey 0
 session.findById("wnd[0]/tbar[1]/btn[8]").press
 
-session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, ""
+session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, "" 'For every SAP Server This line can be different and This line should be replaced with the one in your SAP Script
 
 
 'Code to Copy Measurement Document from table IMRG and Paste it in Excel File Cell (X,10)
-Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell")
+Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") ' Replaced with the one in your SAP Script as mentioned in line 179 of the code
 allRows = myGrid.RowCount - 1 'number of SAP rows
 allCols = myGrid.ColumnCount - 1 'number of SAP Columns
 Dim columns As Object
