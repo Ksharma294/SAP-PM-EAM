@@ -31,7 +31,19 @@ One of the key advantages of this code is its ability to handle multiple measure
 
 Note: To access this script, you need authorization for T-Code: IK11, SE16N and SAP Table: IMRG
 
-This Code will not run straight forward in your SAP Server. You need to perform two changes in the VBA Code to execute it succesfully and it will take 2 minutes. The changes are 
+This code will not run directly on your SAP server. You need to perform a small SAP script recording using T-Code SE16N. Search for table IMRG, and once the results are fetched, click on the top left part of the table and then, exit SE16N. After that, stop the recording. Open the script in Notepad, and using that script, copy and replace the following values as shown in the next lines.
+
+You will need to make two changes in the VBA code to ensure it completes successfully in about two minutes. The changes are as follows:
+
+Under the Sub FetchMeasurementDocument, in lines 179 and 181 of the code, replace:
+
+Line 179
+session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, ""
+This line may vary depending on your SAP server and should be replaced with the corresponding line from your SAP script.
+
+Line 181
+Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell")
+Replace the code after the = sign with the one from your SAP script, as mentioned in line 179.  
 
 
 
