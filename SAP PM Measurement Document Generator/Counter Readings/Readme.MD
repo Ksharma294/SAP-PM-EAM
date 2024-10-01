@@ -37,10 +37,10 @@ You will need to make two changes in the VBA code to ensure it completes success
 
 Under the Sub FetchMeasurementDocument, in lines 179 and 181 of the code, replace:
 
-Line 179
+Line 182
 session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, ""
 This line may vary depending on your SAP server and should be replaced with the corresponding line from your SAP script.
 
-Line 181
+Line 186
 Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell")
 Replace the code after the = sign with the one from your SAP script, as mentioned in line 179.  
