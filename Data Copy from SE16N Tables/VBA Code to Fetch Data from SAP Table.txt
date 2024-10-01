@@ -48,7 +48,7 @@ ActiveSheet.Name = ThisWorkbook.Sheets("Main Sheet").Cells(1, 2).Value
 
 ' Code to Copy Table Data to Active Sheet
 
-Set myGrid = session.FindById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") 'Replace the value inside the bracket from your SAP Server and you can obtain this by running a similar SAP Script
+Set myGrid = session.FindById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") 'Replace the value inside the bracket () from your SAP Server and you can obtain this by running a similar SAP Script
 allRows = myGrid.RowCount - 1 'number of SAP rows
 allCols = myGrid.ColumnCount - 1 'number of SAP Columns
 Dim columns As Object
