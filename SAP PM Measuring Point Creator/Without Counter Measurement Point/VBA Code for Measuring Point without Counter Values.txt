@@ -177,7 +177,7 @@ session.findById("wnd[0]/tbar[1]/btn[8]").press
 session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, ""  ' This line may vary depending on your SAP server and should be replaced with the corresponding line from your SAP script.
 
 
-'Code to Copy Measurement Document from table IMRG and Paste it in Excel File Cell (X,18)
+'Code to Copy Measurement Document from table IMRG and Paste it in Excel File Cell (X,17)
 Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") 'Replace the code after the = sign with the one from your SAP script, as mentioned
 allRows = myGrid.RowCount - 1 'number of SAP rows
 allCols = myGrid.ColumnCount - 1 'number of SAP Columns
