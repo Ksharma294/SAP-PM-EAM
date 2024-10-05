@@ -7,28 +7,43 @@ Enter the required data into the Excel file and press the "Execute" button to st
 Column 1: Serial Number (This data is not fed into SAP. It is for your reference and to know 
           how many readings you have entered)
 
-Column 2: Measuring Point
+Column 2: Measuring Point is Counter 
 
-Column 3: Measurement Date
+Column 3: Measuring Point Object
 
-Column 4: MeasurementTime
+Column 4: Equipment Number
 
-Column 5: Read By
+Column 5: Measuring Point category
 
-Column 6: Documented After Task
+Column 6: Description
 
-Column 7: Enter Equipment Reading
+Column 7: Characteristic Name
 
-Column 8: Text or Comments
+Column 8: Decimal Places
 
-Column 9:Process Status (Leave it empty if no Process status is present)
+Column 9:Code Group
 
-Column 10:Damage Type
+Column 10:Assembly
+
+Column 11:Authorization Group
+
+Column 12:CntrOverReading
+
+Column 13:Annual Estimate
+
+Column 14:Text
+
+Column 15:Upper Value
+
+Column 16:Lower Value 
+
+Column 17:Equipment Object Number
+
 Output:
 
-Column 11: Measurement Document Number (from SAP)
+Column 18: Measurement Point Number (from SAP)
 
-One of the key advantages of this code is its ability to handle multiple measurement points simultaneously. You input the data for as many measurement points as needed (The limit is set to 10000000 Measurement Points), press the "Execute" button in Excel, and you’re free to take a break. When you return, all the entries will be processed for the respective measurement points. For your convenience, the system will also provide the measurement document numbers generated for each point in the SAP system.
+One of the key advantages of this code is its ability to create multiple measurement points simultaneously. You input the data for as much equipment as needed (The limit is set to 10000000 Equipment), press the "Execute" button in Excel, and you’re free to take a break. When you return, all the entries will be processed for the respective measurement points that are created. For your convenience, the system will also provide the measuring pointgenerated for each equipment in the SAP system.
 
 Note: To access this script, you need authorization for T-Code: IK01, SE16N and SAP Table: IMPTT
 
