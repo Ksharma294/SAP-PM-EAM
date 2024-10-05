@@ -1,0 +1,216 @@
+Public Sub CallProgram()
+Call MeasuringPointCreation
+Call FetchMeasuringPoint
+End Sub
+
+
+Public Sub MeasuringPointCreation()
+
+'Declare necessary objects
+    Dim SapGuiAuto As Object
+    Dim application As Object
+    Dim connection As Object
+    Dim session As Object
+    Dim x As Integer
+    Dim Ws As Worksheet
+   
+   
+' Get the SAP GUI Scripting Engine
+    Set SapGuiAuto = GetObject("SAPGUI")
+    Set application = SapGuiAuto.GetScriptingEngine
+
+    ' Access the first connection and session
+    Set connection = application.Children(0)
+    Set session = connection.Children(0)
+    Set Ws = ThisWorkbook.ActiveSheet
+  
+  
+    
+    ' Get the SAP GUI Scripting Engine
+    Set SapGuiAuto = GetObject("SAPGUI")
+    Set application = SapGuiAuto.GetScriptingEngine
+
+    ' Access the first connection and session
+    Set connection = application.Children(0)
+    Set session = connection.Children(0)
+    
+'Initialize the variable x
+    x = 7 ' Start from the first row
+
+
+Do While x < 10000000
+session.findById("wnd[0]").maximize
+session.findById("wnd[0]/tbar[0]/okcd").Text = "/nik01"
+session.findById("wnd[0]").sendVKey 0
+
+
+' Check if the required cells are empty
+    If IsEmpty(Ws.Cells(x, 4)) Then
+        Exit Sub ' Exit the current subroutine if any required cell is empty
+    End If
+
+'Measuring point is counter or Not True is Counter
+session.findById("wnd[0]/usr/chkIMPT-INDCT").Selected = Ws.Cells(x, 2).Value
+session.findById("wnd[0]/usr/ctxtRIMR0-MPOTY").Text = Ws.Cells(x, 3).Value
+
+'Equipment Number
+session.findById("wnd[0]/usr/subMPOBJ:SAPLIMR4:7502/ctxtEQUI-EQUNR").Text = Ws.Cells(x, 4).Value
+
+'Measuring Point Category
+session.findById("wnd[0]/usr/ctxtIMPT-MPTYP").Text = Ws.Cells(x, 5).Value
+session.findById("wnd[0]/usr/subMPOBJ:SAPLIMR4:7502/ctxtEQUI-EQUNR").caretPosition = 3
+session.findById("wnd[0]").sendVKey 0
+
+'Measuring Position
+session.findById("wnd[0]/usr/txtIMPT-PSORT").Text = Ws.Cells(x, 6).Value
+
+'Description
+session.findById("wnd[0]/usr/txtIMPT-PTTXT").Text = Ws.Cells(x, 7).Value
+
+
+'Search for Characterstic Name
+session.findById("wnd[0]/usr/ctxtIMPT-ATNAM").SetFocus
+session.findById("wnd[0]/usr/ctxtIMPT-ATNAM").caretPosition = 0
+session.findById("wnd[0]/usr/ctxtIMPT-ATNAM").Text = Ws.Cells(x, 8).Value
+
+
+'Enter Decimal Places
+session.findById("wnd[0]/usr/txtIMPT-DECIM").Text = Ws.Cells(x, 9).Value
+
+
+'Select Code Group
+session.findById("wnd[0]/usr/ctxtIMPT-CODGR").SetFocus
+session.findById("wnd[0]/usr/ctxtIMPT-CODGR").caretPosition = 0
+session.findById("wnd[0]/usr/ctxtIMPT-CODGR").SetFocus
+session.findById("wnd[0]/usr/ctxtIMPT-CODGR").Text = Ws.Cells(x, 10).Value
+
+'Select Assembly
+session.findById("wnd[0]/usr/ctxtIMPT-LOCAS").Text = Ws.Cells(x, 11).Value
+session.findById("wnd[0]/usr/ctxtIMPT-LOCAS").SetFocus
+session.findById("wnd[0]/usr/ctxtIMPT-LOCAS").caretPosition = 11
+
+'Set Authorization Group
+session.findById("wnd[0]/usr/ctxtIMPT-BEGRU").caretPosition = 0
+session.findById("wnd[0]/usr/ctxtIMPT-BEGRU").SetFocus
+session.findById("wnd[0]/usr/ctxtIMPT-BEGRU").Text = Ws.Cells(x, 12).Value
+
+'CntrOverReading
+session.findById("wnd[0]/usr/txtRIMR0-CJUMC").Text = Ws.Cells(x, 13).Value
+
+'Enter Annual Estimate
+session.findById("wnd[0]/usr/txtRIMR0-PYEAC").Text = Ws.Cells(x, 14).Value
+
+'Enter text
+session.findById("wnd[0]/usr/txtRIMR0-ATEXT").Text = Ws.Cells(x, 15).Value
+session.findById("wnd[0]/usr/txtRIMR0-ATEXT").SetFocus
+session.findById("wnd[0]/usr/txtRIMR0-ATEXT").caretPosition = 12
+session.findById("wnd[0]/tbar[1]/btn[6]").press
+
+'Enter Upper value
+session.findById("wnd[1]/usr/txtRIMR0-MRMAC").Text = Ws.Cells(x, 16).Value
+
+'Enter Lower Value
+session.findById("wnd[1]/usr/txtRIMR0-MRMIC").Text = Space(10) & Ws.Cells(x, 17).Value
+session.findById("wnd[1]/usr/txtRIMR0-MRMIC").SetFocus
+session.findById("wnd[1]/usr/txtRIMR0-MRMIC").caretPosition = 17
+session.findById("wnd[1]/tbar[0]/btn[0]").press
+session.findById("wnd[0]/tbar[0]/btn[11]").press
+session.findById("wnd[0]/tbar[0]/btn[3]").press
+
+x = x + 1
+Loop
+End Sub
+
+Public Sub FetchMeasuringPoint()
+'Declare necessary objects
+    Dim SapGuiAuto As Object
+    Dim application As Object
+    Dim connection As Object
+    Dim session As Object
+    Dim x As Integer
+    Dim Ws As Worksheet
+   
+   
+' Get the SAP GUI Scripting Engine
+    Set SapGuiAuto = GetObject("SAPGUI")
+    Set application = SapGuiAuto.GetScriptingEngine
+
+    ' Access the first connection and session
+    Set connection = application.Children(0)
+    Set session = connection.Children(0)
+    Set Ws = ThisWorkbook.ActiveSheet
+  
+   'Initialize the variable x
+    x = 7 ' Start from the first row
+    
+   
+    ' Get the SAP GUI Scripting Engine
+    Set SapGuiAuto = GetObject("SAPGUI")
+    Set application = SapGuiAuto.GetScriptingEngine
+
+    ' Access the first connection and session
+    Set connection = application.Children(0)
+    Set session = connection.Children(0)
+    
+
+If Not IsObject(application) Then
+   Set SapGuiAuto = GetObject("SAPGUI")
+   Set application = SapGuiAuto.GetScriptingEngine
+End If
+If Not IsObject(connection) Then
+   Set connection = application.Children(0)
+End If
+If Not IsObject(session) Then
+   Set session = connection.Children(0)
+End If
+If IsObject(WScript) Then
+   WScript.ConnectObject session, "on"
+   WScript.ConnectObject application, "on"
+End If
+
+Do While x < 10000000
+
+' Check if the required cells are empty
+    If IsEmpty(Ws.Cells(x, 2)) Or IsEmpty(Ws.Cells(x, 3)) Or IsEmpty(Ws.Cells(x, 4)) Or IsEmpty(Ws.Cells(x, 5)) Or IsEmpty(Ws.Cells(x, 6)) Then
+        Exit Sub ' Exit the current subroutine if any required cell is empty
+    End If
+
+
+session.findById("wnd[0]/tbar[0]/okcd").Text = "/nSE16n"
+session.findById("wnd[0]").sendVKey 0
+session.findById("wnd[0]/usr/ctxtGD-TAB").Text = "IMPTT"
+session.findById("wnd[0]").sendVKey 0
+session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,2]").SetFocus
+session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,2]").caretPosition = 0
+session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,2]").Text = Ws.Cells(x, 18).Value
+session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,3]").Text = Ws.Cells(x, 6).Value
+session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,3]").SetFocus
+session.findById("wnd[0]/usr/tblSAPLSE16NSELFIELDS_TC/ctxtGS_SELFIELDS-LOW[2,3]").caretPosition = 4
+
+
+session.findById("wnd[0]/tbar[1]/btn[8]").press
+session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, "This  line may vary depending on your SAP server and should be replaced with the corresponding line from your SAP script."
+
+
+'Code to Copy Measurement Document from table IMRG and Paste it in Excel File Cell (X,18)
+Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") 'Replace the code after the = sign with the one from your SAP script, as mentioned
+allRows = myGrid.RowCount - 1 'number of SAP rows
+allCols = myGrid.ColumnCount - 1 'number of SAP Columns
+Dim columns As Object
+Set columns = myGrid.ColumnOrder 'SAP column names in order in SAP window
+
+
+For j = 0 To allRows
+ myGrid.FirstVisibleRow = j
+  For i = 0 To 0
+   ActiveSheet.Cells(x, i + 19).Value = myGrid.GetCellValue(j, columns(i)) 'starts in cell "A1"
+  Next i
+ Next j
+
+session.findById("wnd[0]/tbar[0]/btn[3]").press
+session.findById("wnd[0]/tbar[0]/btn[3]").press
+
+x = x + 1
+Loop
+
+End Sub
