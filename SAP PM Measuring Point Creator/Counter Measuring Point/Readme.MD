@@ -43,7 +43,7 @@ Output:
 
 Column 18: Measurement Point Number (from SAP)
 
-One of the key advantages of this code is its ability to create multiple measurement points simultaneously. You input the data for as much equipment as needed (The limit is set to 10000000 Equipment), press the "Execute" button in Excel, and you’re free to take a break. When you return, all the entries will be processed for the respective measurement points that are created. For your convenience, the system will also provide the measuring pointgenerated for each equipment in the SAP system.
+One of the key advantages of this code is its ability to create multiple measurement points simultaneously. You input the data for as much equipment as needed (The limit is set to 10000000 Equipment), press the "Execute" button in Excel, and you’re free to take a break. When you return, all the entries will be processed for the respective measurement points that are created. For your convenience, the system will also provide the Measuring Point generated for each equipment in the SAP system.
 
 Note: To access this script, you need authorization for T-Code: IK01, SE16N and SAP Table: IMPTT
 
