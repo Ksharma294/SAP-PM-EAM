@@ -30,7 +30,7 @@ Column 11: Measurement Document Number (from SAP)
 
 One of the key advantages of this code is its ability to handle multiple measurement points simultaneously. You input the data for as many measurement points as needed (The limit is set to 10000000 Measurement Points), press the "Execute" button in Excel, and you’re free to take a break. When you return, all the entries will be processed for the respective measurement points. For your convenience, the system will also provide the measurement document numbers generated for each point in the SAP system.
 
-Note: To access this script, you need authorization for T-Code: IK11, SE16N and SAP Table: IMRG
+Note: To access this script, you need authorization for T-Code: IK01, SE16N and SAP Table: IMPTT
 
 This code will not run directly on your SAP server. You need to perform a small SAP script recording using T-Code SE16N. Search for table IMRG, and once the results are fetched, click on the top left part of the table and then, exit SE16N. After that, stop the recording. Open the script in Notepad, and using that script, copy and replace the following values as shown in the next lines.
 
