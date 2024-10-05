@@ -48,10 +48,10 @@ This code will not run directly on your SAP server. You need to perform a small 
 
 You will need to make two changes in the VBA code to ensure it completes successfully in about two minutes. The changes are as follows:
 
-Under the Sub FetchMeasurementDocument, in lines 177 and 181 of the code, replace:
+Under the Sub FetchMeasuringPoint, in lines 177 and 181 of the code, replace:
 
-Line 192 session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, "" This line may vary depending on your SAP server and should be replaced with the corresponding line from your SAP script.
+Line 177 session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, "" This line may vary depending on your SAP server and should be replaced with the corresponding line from your SAP script.
 
-Line 196 Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") Replace the code after the = sign with the one from your SAP script, as mentioned in line 192.
+Line 181 Set myGrid = session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell") Replace the code after the = sign with the one from your SAP script, as mentioned in line 192.
 
 If a certain field is not mandatory in your organization, as indicated in the Excel file, you can simply delete that section from the VBA code under the Sub MeasurementDocumentCreation. However, do not modify the Excel file—just leave the field as it is.
