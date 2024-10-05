@@ -51,7 +51,7 @@ This code will not run directly on your SAP server. You need to perform a small 
 
 You will need to make two changes in the VBA code to ensure it completes successfully in about two minutes. The changes are as follows:
 
-Under the Sub FetchMeasurementDocument, in lines 179 and 181 of the code, replace:
+Under the Sub FetchMeasuringPoint, in lines 192 and 196 of the code, replace:
 
 Line 192
 session.findById("wnd[0]/usr/cntlRESULT_LIST/shellcont/shell").setCurrentCell -1, ""
